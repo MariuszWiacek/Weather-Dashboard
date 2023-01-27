@@ -20,7 +20,7 @@ $("#search-button").on("click", function(event) {
       
       // Create and save a reference to new empty table div
      
-      $("#weather-view").text(JSON.stringify(response));
+      $("#today").text(JSON.stringify(response));
     });})
 
 
