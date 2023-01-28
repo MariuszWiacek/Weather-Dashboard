@@ -15,6 +15,33 @@ width: 300px;
 
 }
 
+#search-button {
+    font-weight: bold;
+    color: #000000;
+    background-image: linear-gradient(to right, rgb(216, 103, 11) , rgb(253, 135, 0));
+    
+}
+#search-button:hover 
+{
+    color: #000000;
+    border: #fc4700 solid 1px;
+    background:#fff;
+  }
+
+#clear-button {
+    font-weight: bold;
+    color: #000000;
+    background-image: linear-gradient(to right, rgb(32, 11, 216) , rgb(0, 253, 253));
+    
+}
+#clear-button:hover 
+{
+    color: #000000;
+    border: #0004fc solid 1px;
+    background:#fff;
+  }
+
+
 #form-heading {
 margin-left: 10px;
 font-weight: bold;
@@ -43,11 +70,6 @@ h1 {
     border: solid 1.5px;
 }
 
-#search-button {
-    font-weight: bold;
-    color: #000000;
-    background-image: linear-gradient(to right, rgb(216, 103, 11) , rgb(253, 135, 0));
-}
 
 footer 
 
