@@ -1,82 +1,123 @@
-
-
 var clearEl = document.getElementById("clear-button");
-let searchHistory = JSON.parse(localStorage.getItem("search")) || [];
+var storage = JSON.parse(localStorage.getItem("search")) || [];
+var todayWeather = $('#today');
+    
+
+ // hide visiblity 
+$("#forecast").css("visibility", "hidden");
 
 
+ // Search button click event
+ 
 $("#search-button").on("click", function(event) {
-  var userInput = $('#search-input').val();
-  var APIKey = "583d686b6a9be77ec15bfd1ee5c6eaa2";
-  var queryUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + userInput + "&appid=" + APIKey;
-    // Preventing the submit button from trying to submit the form
-    // We're optionally using a form so the user may hit Enter to search instead of clicking the button
-    event.preventDefault();
-    
-    
-    console.log("bla bla bla " + queryUrl);
-    
-    // Write code between the dashes below to hit the queryURL with $ajax and take the response data
-   
-    $.ajax({
-      url: queryUrl,
-      method: "GET"
-    }).then(function(response) {
-      var CurrentDate = moment().format();
-      $("#forecast").append("Dzisiaj jest" + " " + " " + CurrentDate)
-      
+
+  //make forecast visible after click
+  $('#today').css("visibility", "visible");
+  $("#forecast").css("visibility", "visible");
+ 
 
 
-      
-     
+
+
+// capitalize userInput0 name to make sure is in capital letters even if user inputs in lower case
+var userInput = $('#search-input').val().toUpperCase()
+
+
+
+// My personal API key 
+
+var APIKey = "583d686b6a9be77ec15bfd1ee5c6eaa2";
+var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + userInput + "&appid=" + APIKey;
+    
+    
+event.preventDefault(); // Preventing the submit button from trying to submit the form
+$("#today").html("")    // clears the form before submitting another one
+// $("#forecast").html("")
   
-      // var celsiusTemperature = Math.floor(response.main.temp - 273.15);
-      // // Create CODE HERE to transfer content to HTML
-      // var myTempDiv = $('.temp');
-      // myTempDiv.text(celsiusTemperature + " degrees Celsius");
-      // var city = response.name;
-      // var humidity = response.main.humidity;
-      // var wind = response.wind.speed;
-      // $('.city').text("Weather for " + city);
-      // $('.humidity').text("Relative humidity: " + humidity + "%");
-      // $('.wind').text("Wind speed: " + wind + " m/s");
-      
-      // Create and save a reference to new empty table div
-     
-      $("#today").append(JSON.stringify(response))
+    
+// AJAX call 
+   
+$.ajax({
+url: queryURL,
+method: "GET"
+}).then(function(response) {
+  todayWeather.empty()
+  
+
+// variables for weather results 
+var celsiusTemperature = Math.floor(response.main.temp - 273.15);
+var humidity = response.main.humidity;
+var wind = response.wind.speed;
 
 
-      // 5 day forecast ajax
 
-      // $.ajax({
-      //   url: queryUrl,
-      //   method: "GET"
-      // }).then(function(response) {
-      
-       
-      //   $("#forecast").append(JSON.stringify(response))
+  // prepend current date using moments.js
+var CurrentDate = moment().format('Do MMMM YYYY ');
+
+
+// prepend date and location 
+
+$("#today").prepend("Today is " + " " + " " + CurrentDate + "<br>" + "Current weather for" + "<b>" + " " + userInput + " " + ": " + "<br>");
+
+// get weather icon image
+
+var iconCode = response.weather[0].icon
+
+var imageSource = 'https://openweathermap.org/img/wn/' + iconCode + '@2x.png'
+var image = $('<img>')
+image.attr('src', imageSource)
+
+// apending results to TODAY element
+
+$("#today").append(image);
+$("#today").append("<br>" + "Temperature is :" + " "  + celsiusTemperature + "°C" + "<br>")
+$("#today").append("Relative humidity: " + humidity + "%" + "<br>");
+$("#today").append("Wind speed: " + wind + " m/s" + "<br>");
+
+
+
+// $("#forecast").append(image);
+var day1 = $("<div>")
+$(day1).append("<br>" + "Temperature is :" + " "  + celsiusTemperature + "°C" + "<br>")
+$(day1).append("Relative humidity: " + humidity + "%" + "<br>");
+$(day1).append("Wind speed: " + wind + " m/s" + "<br>");
+
+$("#day2").append("<br>" + "Temperature is :" + " "  + celsiusTemperature + "°C" + "<br>")
+$("#day2").append("Relative humidity: " + humidity + "%" + "<br>");
+$("#day2").append("Wind speed: " + wind + " m/s" + "<br>");
+
+$("#day3").append("<br>" + "Temperature is :" + " "  + celsiusTemperature + "°C" + "<br>")
+$("#day3").append("Relative humidity: " + humidity + "%" + "<br>");
+$("#day3").append("Wind speed: " + wind + " m/s" + "<br>");
+
+$("#day4").append("<br>" + "Temperature is :" + " "  + celsiusTemperature + "°C" + "<br>")
+$("#day4").append("Relative humidity: " + humidity + "%" + "<br>");
+$("#day4").append("Wind speed: " + wind + " m/s" + "<br>");
+
+$("#day5").append("<br>" + "Temperature is :" + " "  + celsiusTemperature + "°C" + "<br>")
+$("#day5").append("Relative humidity: " + humidity + "%" + "<br>");
+$("#day5").append("Wind speed: " + wind + " m/s" + "<br>");
+
+
+
+// Add results to local storage
+localStorage.setItem('history', JSON.stringify(storage));
+storage.push(userInput) ;
+
+console.log(storage)
+  
     });})
 
- // Clear History button
+
+
+
+ // Clear storage button
+
  clearEl.addEventListener("click", function () {
   localStorage.clear();
-  searchHistory = [];
-  renderSearchHistory();
-})
+  storage = [];
+  renderstorage();})
 
-  //  weather dashboard with form inputs.
-  // * When a user searches for a city they are presented with current and future conditions for that city and that city is added to the search history
-  // * When a user views the current weather conditions for that city they are presented with:
-  //   * The city name
-  //   * The date
-  //   * An icon representation of weather conditions
-  //   * The temperature
-  //   * The humidity
-  //   * The wind speed
-  // * When a user view future weather conditions for that city they are presented with a 5-day forecast that displays:
-  //   * The date
-  //   * An icon representation of weather conditions
-  //   * The temperature
-  //   * The humidity
-  // * When a user click on a city in the search history they are again presented with current and future conditions for that city
+
 
   

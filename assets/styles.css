@@ -1,9 +1,14 @@
+
+
+
 aside {
     width: 250px
+    
 }
 
 
 .input-group {
+   
     display: flex;
     flex-direction: column;
     width: 250px
@@ -18,20 +23,20 @@ width: 300px;
 #search-button {
     font-weight: bold;
     color: #000000;
-    background-image: linear-gradient(to right, rgb(216, 103, 11) , rgb(253, 135, 0));
+    background-image: linear-gradient(to bottom, rgb(216, 11, 11) , rgb(255, 119, 119));
     
 }
 #search-button:hover 
 {
     color: #000000;
-    border: #fc4700 solid 1px;
+    border: #fc0000 solid 1px;
     background:#fff;
   }
 
 #clear-button {
     font-weight: bold;
     color: #000000;
-    background-image: linear-gradient(to right, rgb(32, 11, 216) , rgb(0, 253, 253));
+    background-image: linear-gradient(to bottom, rgb(32, 11, 216) , rgb(0, 253, 253));
     
 }
 #clear-button:hover 
@@ -49,7 +54,7 @@ font-weight: bold;
 
 #weather-header {
     
-    background-image: linear-gradient(to right, rgb(252, 101, 0) , rgb(255, 207, 49));
+    background-image: linear-gradient(to bottom, rgb(126, 126, 126) , rgb(255, 255, 255));
     padding: 5px;
 }
 h1 {
@@ -57,17 +62,22 @@ h1 {
 }
 
 #page-heading {
-    font-size: 4vh;
+    font-size: 6vh;
     font-weight: bold;
 }
 
 #forecast-header {
     font-size: 3vh;
     font-weight: bold;
+    visibility: hidden;
 }
 
 #today {
-    border: solid 1.5px;
+    visibility: hidden;
+    background-image: linear-gradient(to top, rgb(126, 126, 126) , rgb(255, 255, 255));
+    text-align: center;
+    font-weight:lighter
+    font-size: 2.5vh;
 }
 
 
@@ -87,4 +97,17 @@ footer h4
 
 {
 font-size: 16px;
+}
+
+.card{
+    
+    width: 18rem;
+    margin-right: 15px;
+    color: white;
+    padding: 0px;
+}
+
+.card-body {
+    background-image: linear-gradient(to bottom, rgb(126, 126, 126) , rgb(255, 255, 255));
+    padding: -0px;
 }
