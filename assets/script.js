@@ -4,7 +4,7 @@ var todayWeather = $('#today');
     
 
  // hide visiblity 
-$("#forecast").css("visibility", "hidden");
+// $("#forecast").css("visibility", "hidden");
 
 
  // Search button click event
@@ -13,14 +13,17 @@ $("#search-button").on("click", function(event) {
 
   //make forecast visible after click
   $('#today').css("visibility", "visible");
+  $("#forecast-header").css("visibility", "visible");
   $("#forecast").css("visibility", "visible");
- 
+
+  
 
 
 
 
-// capitalize userInput0 name to make sure is in capital letters even if user inputs in lower case
+// capitalize userInput0 name to make sure is in capital varters even if user inputs in lower case
 var userInput = $('#search-input').val().toUpperCase()
+
 
 
 
@@ -76,27 +79,54 @@ $("#today").append("Wind speed: " + wind + " m/s" + "<br>");
 
 
 
-// $("#forecast").append(image);
-var day1 = $("<div>")
-$(day1).append("<br>" + "Temperature is :" + " "  + celsiusTemperature + "°C" + "<br>")
-$(day1).append("Relative humidity: " + humidity + "%" + "<br>");
-$(day1).append("Wind speed: " + wind + " m/s" + "<br>");
 
-$("#day2").append("<br>" + "Temperature is :" + " "  + celsiusTemperature + "°C" + "<br>")
-$("#day2").append("Relative humidity: " + humidity + "%" + "<br>");
-$("#day2").append("Wind speed: " + wind + " m/s" + "<br>");
+// 5 DAY WEATHER FORECAST SECTION
 
-$("#day3").append("<br>" + "Temperature is :" + " "  + celsiusTemperature + "°C" + "<br>")
-$("#day3").append("Relative humidity: " + humidity + "%" + "<br>");
-$("#day3").append("Wind speed: " + wind + " m/s" + "<br>");
+var forecastHeader = $("<p>").text("5 Day Weather Forecast" + " " + "for" + " " + userInput)
+$("#forecastheader").append(forecastHeader);
 
-$("#day4").append("<br>" + "Temperature is :" + " "  + celsiusTemperature + "°C" + "<br>")
-$("#day4").append("Relative humidity: " + humidity + "%" + "<br>");
-$("#day4").append("Wind speed: " + wind + " m/s" + "<br>");
+// creating 5 day forecast cards using loop 
+for (var i = 0; i < 5; i++) {
+  
+  var forecastDate = moment().add(i + 1, 'days').format("DD/MM/YYYY");
+  var forecastCard = $("<div>")
 
-$("#day5").append("<br>" + "Temperature is :" + " "  + celsiusTemperature + "°C" + "<br>")
-$("#day5").append("Relative humidity: " + humidity + "%" + "<br>");
-$("#day5").append("Wind speed: " + wind + " m/s" + "<br>");
+// forecast contents
+
+
+  var forecastCardContentIcon = $("<p>").append("icon");
+  forecastCard.append(forecastCardContentIcon);
+
+  var forecastCardContentTemp = $("<p>").text("Temp");
+  forecastCard.append(forecastCardContentTemp);
+
+  var forecastCardContentHum = $("<p>").text("Humidity");
+  forecastCard.append(forecastCardContentHum);
+
+  var forecastCardContentWind = $("<p>").text("WindSpeed");
+  forecastCard.append(forecastCardContentWind);
+  
+
+
+
+  
+
+
+  forecastCard.addClass('bg-info m-1 p-1 rounded text-center text-dark border border-dark col-lg-2 col-sm-4 col-md-4 col-10 align-items-center text-wrap')
+  forecastCard.prepend("<h4>" + forecastDate + " </h4>");
+  $("#forecast").append(forecastCard);
+
+  
+
+  // creating content of 5 day forecast cards inside this loop
+// temperature 
+var forecastTemp = response.main.temp;
+// forecastTemp.text(`Temp: ${fcTemp}°C`); 
+forecastCard.append(forecastTemp);
+}
+  
+  
+
 
 
 

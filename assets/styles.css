@@ -54,10 +54,14 @@ font-weight: bold;
 
 #weather-header {
     
-    background-image: linear-gradient(to bottom, rgb(126, 126, 126) , rgb(255, 255, 255));
+    background-image: linear-gradient(to bottom, rgb(255, 102, 0) , rgb(255, 255, 255));
     padding: 5px;
 }
 h1 {
+    color: #000000;
+}
+
+h4 {
     color: #000000;
 }
 
@@ -65,16 +69,24 @@ h1 {
     font-size: 6vh;
     font-weight: bold;
 }
-
-#forecast-header {
-    font-size: 3vh;
+#forecastheader {
+    text-align: center;
+    font-size: 8vh;
     font-weight: bold;
+    padding-top: 20px;
+
+}
+#forecast {
+    
     visibility: hidden;
+    text-align: center;
+    display:flex; 
+    justify-content:space-between; 
 }
 
 #today {
     visibility: hidden;
-    background-image: linear-gradient(to top, rgb(126, 126, 126) , rgb(255, 255, 255));
+    background-image: linear-gradient(to top, rgb(255, 102, 0) , rgb(255, 255, 255));
     text-align: center;
     font-weight:lighter
     font-size: 2.5vh;
@@ -83,31 +95,26 @@ h1 {
 
 footer 
 
-{ 
+#footer {
     position: absolute;
     bottom: 0;
     width: 100%;
-    height: 50px;
-    border: solid 1.5px;
-    text-align: center;
-    color: #000000;
-}
+    height: 2.5rem;           
+  }
 
-footer h4
+footer h6
 
 {
 font-size: 16px;
 }
 
-.card{
-    
-    width: 18rem;
-    margin-right: 15px;
-    color: white;
-    padding: 0px;
-}
+   
 
-.card-body {
-    background-image: linear-gradient(to bottom, rgb(126, 126, 126) , rgb(255, 255, 255));
+
+.card-body 
+
+{
+
+    background-color: rgb(255, 102, 0);
     padding: -0px;
 }
