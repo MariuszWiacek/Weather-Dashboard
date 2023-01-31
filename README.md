@@ -1,7 +1,5 @@
 # Module 8 Server-Side APIs: Weather Dashboard
 
-# Work-Day-Scheduler
-
 This weather dashboard app is to check current weather and 5 day forecast using the OpenWeatherMap APIs. 
 In this App you are able to check weather for multiple cities and retrieve them later from local storage.
 
