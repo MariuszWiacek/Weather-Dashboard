@@ -13,7 +13,7 @@ In this App you are able to check weather for multiple cities and retrieve them 
 * AJAX, API
 
 ## Site Location
-[Weather Dashboard](https://mariuszwiacek.github.io/Weather-Dashboard)
+[Weather Dashboard](https://mariuszwiacek.github.io/Weather-Dashboard) <-- Click here to try my Weather APP 
 
 ## Contribution
 Made by Mariusz Wiacek
