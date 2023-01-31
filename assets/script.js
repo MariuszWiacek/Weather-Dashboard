@@ -1,10 +1,9 @@
 var clearEl = document.getElementById("clear-button");
-var storage = JSON.parse(localStorage.getItem("search")) || [];
+var storage = JSON.parse(localStorage.getItem('history')) || [];
 var todayWeather = $('#today');
+var MyButton = $('#history');
     
 
- // hide visiblity 
-// $("#forecast").css("visibility", "hidden");
 
 
  // Search button click event
@@ -16,15 +15,13 @@ $("#search-button").on("click", function(event) {
   $("#forecast-header").css("visibility", "visible");
   $("#forecast").css("visibility", "visible");
 
-  
 
 
 
 
-// capitalize userInput0 name to make sure is in capital varters even if user inputs in lower case
+
+// capitalize userInput name to make sure is in capital letters even if user inputs in lower case
 var userInput = $('#search-input').val().toUpperCase()
-
-
 
 
 // My personal API key 
@@ -35,7 +32,8 @@ var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + userInput 
     
 event.preventDefault(); // Preventing the submit button from trying to submit the form
 $("#today").html("")    // clears the form before submitting another one
-// $("#forecast").html("")
+$("#forecast").html("")
+$("#forecastheader").html("")
   
     
 // AJAX call 
@@ -45,14 +43,20 @@ url: queryURL,
 method: "GET"
 }).then(function(response) {
   todayWeather.empty()
+
   
+  $("input-group-append").empty();
+  var MyButton = $("<button>", "<br>");
+  $(".input-group-append").prepend(MyButton);
+  MyButton.addClass('historyBtn btn-dark py-2 my-1 rounded');
+  MyButton.attr("id", userInput).attr('style','width: 100%;' , 'display: flex')
+  MyButton.text(userInput);
+
 
 // variables for weather results 
 var celsiusTemperature = Math.floor(response.main.temp - 273.15);
 var humidity = response.main.humidity;
 var wind = response.wind.speed;
-
-
 
   // prepend current date using moments.js
 var CurrentDate = moment().format('Do MMMM YYYY ');
@@ -82,8 +86,21 @@ $("#today").append("Wind speed: " + wind + " m/s" + "<br>");
 
 // 5 DAY WEATHER FORECAST SECTION
 
+
 var forecastHeader = $("<p>").text("5 Day Weather Forecast" + " " + "for" + " " + userInput)
 $("#forecastheader").append(forecastHeader);
+
+// variables for forecast
+
+
+
+// var forecastTemp = 
+
+
+// var forecastHum = 
+
+// var forecastWind = 
+
 
 // creating 5 day forecast cards using loop 
 for (var i = 0; i < 5; i++) {
@@ -92,52 +109,32 @@ for (var i = 0; i < 5; i++) {
   var forecastCard = $("<div>")
 
 // forecast contents
-
-
-  var forecastCardContentIcon = $("<p>").append("icon");
+var iconValue = []
+  var forecastCardContentIcon = $("<p>").append(iconValue);
   forecastCard.append(forecastCardContentIcon);
 
-  var forecastCardContentTemp = $("<p>").text("Temp");
+  var forecastCardContentTemp = $("<p>").text("Temperature:" + " "  + celsiusTemperature + "°C" );
   forecastCard.append(forecastCardContentTemp);
 
-  var forecastCardContentHum = $("<p>").text("Humidity");
+  var forecastCardContentHum = $("<p>").text("Relative humidity: " + humidity + "%");
   forecastCard.append(forecastCardContentHum);
 
-  var forecastCardContentWind = $("<p>").text("WindSpeed");
+  var forecastCardContentWind = $("<p>").text("Wind speed: " + wind + " m/s");
   forecastCard.append(forecastCardContentWind);
   
-
-
-
-  
-
-
   forecastCard.addClass('bg-info m-1 p-1 rounded text-center text-dark border border-dark col-lg-2 col-sm-4 col-md-4 col-10 align-items-center text-wrap')
   forecastCard.prepend("<h4>" + forecastDate + " </h4>");
   $("#forecast").append(forecastCard);
-
-  
-
-  // creating content of 5 day forecast cards inside this loop
-// temperature 
-var forecastTemp = response.main.temp;
-// forecastTemp.text(`Temp: ${fcTemp}°C`); 
-forecastCard.append(forecastTemp);
 }
   
+
   
-
-
-
-
-// Add results to local storage
+  // Add results to local storage
 localStorage.setItem('history', JSON.stringify(storage));
 storage.push(userInput) ;
 
-console.log(storage)
   
-    });})
-
+})})
 
 
 
@@ -147,7 +144,3 @@ console.log(storage)
   localStorage.clear();
   storage = [];
   renderstorage();})
-
-
-
-  

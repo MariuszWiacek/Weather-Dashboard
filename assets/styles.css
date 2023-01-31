@@ -5,7 +5,12 @@ aside {
     width: 250px
     
 }
+.input-group-append {
+    display: flex;
+    flex-direction: column
 
+
+}
 
 .input-group {
    
