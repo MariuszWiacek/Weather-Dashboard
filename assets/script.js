@@ -35,32 +35,18 @@ $("#forecast").html("")
 $("#forecastheader").html("")
   
     
-// AJAX call for locations
+
    
 //gets data from first uery url
-var queryUrl = "https://api.openweathermap.org/geo/1.0/direct?q=" + userInput + "&appid=" + APIKey;
+var queryUrl = "https://api.openweathermap.org/data/2.5/forecast?q=" + userInput + "&appid=" + APIKey;
 
-
+// AJAX call 
 $.ajax({
   url: queryUrl,
   method: "GET"
-}).then(function (FirstResponse) {
- 
- var latitude = (FirstResponse[0].lat).toFixed(2)
- var longitude = (FirstResponse[0].lon).toFixed(2)
+}).then(function (response) {
 
-//forecast query
- var forQueryURL = "https://api.openweathermap.org/data/2.5/forecast?lat=" + latitude + "&lon=" + longitude + "&appid=" + APIKey 
-
-
-
-//  another AJAX call for forecast
-$.ajax({
-  url: forQueryURL,
-  method: "GET",
-}).then(function(response) {
-  todayWeather.empty()
-
+  console.log(response.list)
   
   $("input-group-append").empty();
   var MyButton = $("<button>", "<br>");
@@ -99,65 +85,53 @@ $("#today").append("Relative humidity: " + humidity + "%" + "<br>");
 $("#today").append("Wind speed: " + wind + " m/s" + "<br>");
 
 
-
-
 // 5 DAY WEATHER FORECAST SECTION
-function forecast() {
 
-// variables for forecast using loop
-for (var i = 5; i < response.list.length; i +=8) {
-
-  var image = $("<img>").append(iconValue);
-  var iconValue = response.list[i].weather[0].icon
- 
-  // var forecastTemp = 
-  var forTemp = ((response.list[i].main.temp) - 273.15).toFixed(2);
-  
-  // var forecastHum = 
-   
-  var forHum = response.list[i].main.humidity.toFixed(0);
-  
-  
-  // var forecastWind 
-  var forWind = response.list[i].wind.speed.toFixed(0);
-  
-  
-  
-  }
-  
 
 
 var forecastHeader = $("<p>").text("5 Day Weather Forecast" + " " + "for" + " " + userInput)
 $("#forecastheader").append(forecastHeader);
 
 // creating 5 day forecast cards using loop 
-for (var j = 0; j < 5; j++) {
+for (j = 0; j < 5; j++) {
+
+  var imageFor = $("<img>")
+  imageFor.attr("src", "https://openweathermap.org/img/wn/" + response.list[j].weather[0].icon + ".png")
+ 
+   // var forecastTemp = 
+   var forTemp = ((response.list[j].main.temp) - 273.15).toFixed(100)
+   
+   // var forecastHum = 
+    
+   var forHum = (response.list[j].main.humidity).toFixed(100)
+   
+   
+   // var forecastWind 
+   var forWind = (response.list[j].wind.speed).toFixed(100)
+
+
   
   var forecastDate = moment().add(j + 1, 'days').format("DD/MM/YYYY");
   var forecastCard = $("<div>") 
   forecastCard.addClass('bg-info m-1 p-1 rounded text-center text-dark border border-dark col-lg-2 col-sm-4 col-md-4 col-10 align-items-center text-wrap')
   forecastCard.prepend("<h4>" + forecastDate + " </h4>");
   
-
+// FORECAST CARD
   
 $("#forecast").append(forecastCard);
-forecastCard.append(image);
+forecastCard.append(imageFor);
 forecastCard.append("<br>" + "Temp :" + " "  + forTemp[j] + "°C" + "<br>")
 forecastCard.append("Humidity: " + forHum[j] + "%" + "<br>");
 forecastCard.append("Wind speed: " + forWind[j] + " m/s" + "<br>");
 
-}  
+}  //end of forecast loop
 
-}
-
-forecast()
-  
   // Add results to local storage
 localStorage.setItem('history', JSON.stringify(storage));
 storage.push(userInput) ;
 
   
-})})})
+})})
 
 
 
