@@ -35,7 +35,7 @@ $("#forecast").html("")
 $("#forecastheader").html("")
   
     
-// AJAX call 
+// AJAX call for locations
    
 //gets data from first uery url
 var queryUrl = "https://api.openweathermap.org/geo/1.0/direct?q=" + userInput + "&appid=" + APIKey;
@@ -51,9 +51,6 @@ $.ajax({
 
 //forecast query
  var forQueryURL = "https://api.openweathermap.org/data/2.5/forecast?lat=" + latitude + "&lon=" + longitude + "&appid=" + APIKey 
-
-
-
 
 
 
