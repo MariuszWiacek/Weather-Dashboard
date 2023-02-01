@@ -5,7 +5,7 @@ var MyButton = $('#history');
     
 
 
-
+function weatherFunction() {
  // Search button click event
  
 $("#search-button").on("click", function(event) {
@@ -23,6 +23,10 @@ $("#search-button").on("click", function(event) {
 // capitalize userInput name to make sure is in capital letters even if user inputs in lower case
 var userInput = $('#search-input').val().toUpperCase()
 
+
+if (!userInput) {
+  alert("Wrong! Please choose city name")
+};
 
 // My personal API key 
 
@@ -46,7 +50,6 @@ $.ajax({
   method: "GET"
 }).then(function (response) {
 
-  console.log(response.list)
   
   $("input-group-append").empty();
   var MyButton = $("<button>", "<br>");
@@ -57,7 +60,7 @@ $.ajax({
 
 
 // variables for weather results 
-var celsiusTemperature  = ((response.list[0].main.temp) - 273.15).toFixed(0)
+var celsiusTemperature  = Math.floor(response.list[0].main.temp - 273.15)
 var humidity = (response.list[0].main.humidity)
 var wind = (response.list[0].wind.speed).toFixed(1)
 
@@ -85,6 +88,7 @@ $("#today").append("Relative humidity: " + humidity + "%" + "<br>");
 $("#today").append("Wind speed: " + wind + " m/s" + "<br>");
 
 
+
 // 5 DAY WEATHER FORECAST SECTION
 
 
@@ -99,30 +103,31 @@ for (j = 0; j < 5; j++) {
   imageFor.attr("src", "https://openweathermap.org/img/wn/" + response.list[j].weather[0].icon + ".png")
  
    // var forecastTemp = 
-   var forTemp = ((response.list[j].main.temp) - 273.15).toFixed(100)
+   var forTemp = (response.list[j].main.temp - 273.15).toFixed(0)
    
    // var forecastHum = 
     
-   var forHum = (response.list[j].main.humidity).toFixed(100)
+   var forHum = (response.list[j].main.humidity)
    
    
    // var forecastWind 
-   var forWind = (response.list[j].wind.speed).toFixed(100)
+   var forWind = (response.list[j].wind.speed).toFixed(0)
+
 
 
   
   var forecastDate = moment().add(j + 1, 'days').format("DD/MM/YYYY");
-  var forecastCard = $("<div>") 
-  forecastCard.addClass('bg-info m-1 p-1 rounded text-center text-dark border border-dark col-lg-2 col-sm-4 col-md-4 col-10 align-items-center text-wrap')
+  var forecastCard = $("<p>") 
+  forecastCard.addClass('bg-info m-1 p-1 rounded text-center text-dark border-dark col-lg-2 col-sm-4 col-md-4 col-10 align-items-center text-wrap')
   forecastCard.prepend("<h4>" + forecastDate + " </h4>");
   
 // FORECAST CARD
   
 $("#forecast").append(forecastCard);
 forecastCard.append(imageFor);
-forecastCard.append("<br>" + "Temp :" + " "  + forTemp[j] + "°C" + "<br>")
-forecastCard.append("Humidity: " + forHum[j] + "%" + "<br>");
-forecastCard.append("Wind speed: " + forWind[j] + " m/s" + "<br>");
+forecastCard.append("<br>" + "Temp :" + " " + forTemp + "°C" + "<br>")
+forecastCard.append("Humidity: " + forHum + "%" + "<br>");
+forecastCard.append("Wind speed: " + forWind + " m/s" + "<br>");
 
 }  //end of forecast loop
 
@@ -132,12 +137,21 @@ storage.push(userInput) ;
 
   
 })})
-
-
+}
+weatherFunction()
 
  // Clear storage button
 
  clearEl.addEventListener("click", function () {
   localStorage.clear();
   storage = [];
-  renderstorage();})
+  ;})
+
+  // /button history click event 
+// MyButton.on("click", function(event) {
+//   event.preventDefault();
+//   var buttonInput = ($(this).text());
+//   weatherFunction(buttonInput = userInput)
+
+
+// })
