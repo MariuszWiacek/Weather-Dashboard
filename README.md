@@ -10,7 +10,7 @@ In this App you are able to check weather for multiple cities and retrieve them 
 * BootStrap
 * jQuery
 * Moment.js
-* AJAX, API
+* AJAX, API, DOM Manipulation
 
 ## Site Location
 [Weather Dashboard](https://mariuszwiacek.github.io/Weather-Dashboard) <-- Click here to try my Weather APP 
