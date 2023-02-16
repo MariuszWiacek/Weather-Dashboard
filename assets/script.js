@@ -2,22 +2,21 @@ var clearEl = document.getElementById("clear-button");
 var storage = JSON.parse(localStorage.getItem('history')) || [];
 var todayWeather = $('#today');
 var MyButton = $('#history');
+var userInput = $('#search-input')
     
+
+
 
 
 function weatherFunction() {
  // Search button click event
  
 $("#search-button").on("click", function(event) {
-
+  
   //make forecast visible after click
   $('#today').css("visibility", "visible");
   $("#forecast-header").css("visibility", "visible");
   $("#forecast").css("visibility", "visible");
-
-
-
-
 
 
 // capitalize userInput name to make sure is in capital letters even if user inputs in lower case
@@ -50,16 +49,7 @@ $.ajax({
   method: "GET"
 }).then(function (response) {
 
-  
-  $("input-group-append").empty();
-  var MyButton = $("<button>", "<br>");
-  $(".input-group-append").prepend(MyButton);
-  MyButton.addClass('historyBtn btn-dark py-2 my-1 rounded');
-  MyButton.attr("id", userInput).attr('style','width: 100%;' , 'display: flex')
-  MyButton.text(userInput);
-
-
-// variables for weather results 
+  // variables for weather results 
 var celsiusTemperature  = Math.floor(response.list[0].main.temp - 273.15)
 var humidity = (response.list[0].main.humidity)
 var wind = (response.list[0].wind.speed).toFixed(1)
@@ -90,7 +80,6 @@ $("#today").append("Wind speed: " + wind + " m/s" + "<br>");
 
 
 // 5 DAY WEATHER FORECAST SECTION
-
 
 
 var forecastHeader = $("<p>").text("5 Day Weather Forecast" + " " + "for" + " " + userInput)
@@ -131,27 +120,52 @@ forecastCard.append("Wind speed: " + forWind + " m/s" + "<br>");
 
 }  //end of forecast loop
 
-  // Add results to local storage
-localStorage.setItem('history', JSON.stringify(storage));
+
+// HISTORY BUTTONS
+
+
+
+$("input-group-append").empty();
+var MyButton = $("<button>", "<br>");
+
+$(".input-group-append").prepend(MyButton);
+event.preventDefault();
+MyButton.addClass('historyBtn btn-dark py-2 my-1 rounded');
+MyButton.attr("name", history).attr('style','width: 100%;' , 'display: flex')
+console.log(history)
+MyButton.text(history[i]);
+
+//  /button history click event 
+MyButton.on("click", function(event) {
+event.preventDefault();
+  alert('clicked')
+ 
+  $("#search-input").val(event.target.name);
+  $("#search-button").click()
+  
+
+ // Add results to local storage
+ 
+localStorage.setItem(userInput,JSON.stringify(userInput))
 storage.push(userInput) ;
+ event.preventDefault();
+
+
+
 
   
-})})
-}
+})})})}
+
 weatherFunction()
 
  // Clear storage button
+var clearBtn = $("#clear-button")
+ clearBtn.on('click', function(){
+  localStorage.clear(); })
+  
 
- clearEl.addEventListener("click", function () {
-  localStorage.clear();
-  storage = [];
-  ;})
+  localStorage.setItem("history", JSON.stringify(history));
 
-  // /button history click event 
-// MyButton.on("click", function(event) {
-//   event.preventDefault();
-//   var buttonInput = ($(this).text());
-//   weatherFunction(buttonInput = userInput)
+  var history = JSON.parse(localStorage.getItem("history")) || []
 
 
-// })

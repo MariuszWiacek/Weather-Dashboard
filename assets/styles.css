@@ -1,67 +1,63 @@
-
-
-
 aside {
     width: 250px
-    
 }
+
 .input-group-append {
     display: flex;
     flex-direction: column
-
-
 }
 
 .input-group {
-   
+
     display: flex;
     flex-direction: column;
     width: 250px
 }
 
 #search-input {
-margin-bottom: 10px;
-width: 300px;
+    margin-bottom: 10px;
+    width: 300px;
 
 }
 
 #search-button {
     font-weight: bold;
     color: #000000;
-    background-image: linear-gradient(to bottom, rgb(216, 11, 11) , rgb(255, 119, 119));
-    
+    background-image: linear-gradient(to bottom, rgb(216, 11, 11), rgb(255, 119, 119));
+
 }
-#search-button:hover 
-{
+
+#search-button:hover {
     color: #000000;
     border: #fc0000 solid 1px;
-    background:#fff;
-  }
+    background: #fff;
+}
 
 #clear-button {
     font-weight: bold;
     color: #000000;
-    background-image: linear-gradient(to bottom, rgb(32, 11, 216) , rgb(0, 253, 253));
-    
+    background-image: linear-gradient(to bottom, rgb(32, 11, 216), rgb(0, 253, 253));
+
 }
-#clear-button:hover 
-{
+
+#clear-button:hover {
     color: #000000;
     border: #0004fc solid 1px;
-    background:#fff;
-  }
+    background: #fff;
+}
 
 
 #form-heading {
-margin-left: 10px;
-font-weight: bold;
+    margin-left: 10px;
+    font-weight: bold;
 }
 
 #weather-header {
-    
-    background-image: linear-gradient(to bottom, rgb(255, 102, 0) , rgb(255, 255, 255));
+
+    background-image: linear-gradient(to bottom, rgb(255, 102, 0), rgb(255, 255, 255));
     padding: 5px;
 }
+
 h1 {
     color: #000000;
 }
@@ -74,6 +70,7 @@ h4 {
     font-size: 6vh;
     font-weight: bold;
 }
+
 #forecastheader {
     text-align: center;
     font-size: 8vh;
@@ -81,45 +78,53 @@ h4 {
     padding-top: 20px;
 
 }
+
 #forecast {
-    
+
     visibility: hidden;
     text-align: center;
-    display:flex; 
-    justify-content:space-between; 
+    display: flex;
+    justify-content: space-between;
 }
 
 #today {
     visibility: hidden;
-    background-image: linear-gradient(to top, rgb(255, 102, 0) , rgb(255, 255, 255));
+    background-image: linear-gradient(to top, rgb(255, 102, 0), rgb(255, 255, 255));
     text-align: center;
-    font-weight:lighter
-    font-size: 2.5vh;
+    font-weight: lighter font-size: 2.5vh;
 }
 
 
-footer 
-
-#footer {
+footer #footer {
     position: absolute;
     bottom: 0;
     width: 100%;
-    height: 2.5rem;           
-  }
-
-footer h6
-
-{
-font-size: 16px;
+    height: 2.5rem;
 }
 
-   
+footer h6 {
+    font-size: 16px;
+}
 
 
-.card-body 
 
-{
+
+.card-body {
 
     background-color: rgb(255, 102, 0);
 
 }
+
+@media screen and (max-width: 600px) {
+
+    #forecast {
+
+        display: flex;
+        flex-direction: column;
+        width: 100% }
+
+        #search-button #clear-button #search-input {
+            width: 100% 
+        }
+
+    }
