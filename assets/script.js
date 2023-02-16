@@ -133,15 +133,18 @@ event.preventDefault();
 MyButton.addClass('historyBtn btn-dark py-2 my-1 rounded');
 MyButton.attr("name", history).attr('style','width: 100%;' , 'display: flex')
 console.log(history)
-MyButton.text(history[i]);
+MyButton.text(userInput);
 
 //  /button history click event 
 MyButton.on("click", function(event) {
-event.preventDefault();
-  alert('clicked')
- 
-  $("#search-input").val(event.target.name);
+  var NewUserInput = $(this).text();
+  $("input-group-append").empty();
   $("#search-button").click()
+  
+ 
+  // $("#search-input")
+  
+  event.preventDefault();
   
 
  // Add results to local storage

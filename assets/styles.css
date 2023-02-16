@@ -17,6 +17,8 @@ aside {
 #search-input {
     margin-bottom: 10px;
     width: 300px;
+    border-color: #ff4800;
+    align-items: center;
 
 }
 
@@ -60,6 +62,7 @@ aside {
 
 h1 {
     color: #000000;
+    text-shadow: 5px 5px 8px #ff6600;
 }
 
 h4 {
@@ -72,10 +75,12 @@ h4 {
 }
 
 #forecastheader {
+    color: #000000;
     text-align: center;
-    font-size: 8vh;
+    font-size: 5vh;
     font-weight: bold;
     padding-top: 20px;
+    text-shadow: 2px 2px 4px #00ffea;
 
 }
 
@@ -106,7 +111,9 @@ footer h6 {
     font-size: 16px;
 }
 
-
+h2 {
+    text-align: left;
+}
 
 
 .card-body {
@@ -121,10 +128,29 @@ footer h6 {
 
         display: flex;
         flex-direction: column;
-        width: 100% }
+        align-items: center;
+        width: 100%
+    }
 
-        #search-button #clear-button #search-input {
-            width: 100% 
-        }
+    #search-button #clear-button {
+        width: 100%
+    }
+
+    #search-input {
+        width: auto;
+        border-color: #ff0000;
+        align-items: center;
 
     }
+
+    #form-heading {
+        position: static;
+        font-size: medium;
+        text-align: center;
+        color: #ad0000;
+        text-shadow: 5px 5px 8px #ff8800;
+        
+    }
+
+  
+}
