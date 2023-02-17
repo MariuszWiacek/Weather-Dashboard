@@ -82,7 +82,7 @@ $("#today").append("Wind speed: " + wind + " m/s" + "<br>");
 // 5 DAY WEATHER FORECAST SECTION
 
 
-var forecastHeader = $("<p>").text("5 Day Weather Forecast" + " " + "for" + " " + userInput)
+var forecastHeader = $("<p>").text("5 Day Weather Forecast" + " " + "for" + " " + userInput + " : ")
 $("#forecastheader").append(forecastHeader);
 
 // creating 5 day forecast cards using loop 

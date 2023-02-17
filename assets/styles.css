@@ -24,6 +24,7 @@ aside {
 
 
 #clear-button, #search-button {
+    font-family: 'Baskerville', sans-serif;
     font-weight: bold;
     color: #000000;
     display: block;
@@ -53,12 +54,18 @@ aside {
               transition: all 0.4s ease-in-out;
   }
 
-
+  #clear-button {
+    background-color: rgba(250, 0, 0, 0.658);
+    border-style:ridge;
+  }
 
 
 #form-heading {
+    font-weight:100;
+    font-size: 3vh;
     margin-left: 10px;
-    font-weight: bold;
+    text-align: left;
+    font-family: 'Baskerville', sans-serif;
 }
 
 #weather-header {
@@ -67,7 +74,7 @@ aside {
 }
 
 h1 {
-    color: #3a3a3a;
+    color: #000000;
 }
 
 h4 {
@@ -75,44 +82,48 @@ h4 {
 }
 
 #page-heading {
-    font-size: 8vh;
-    font-weight: bold;
-    border-style:inset;
+    font-family: 'Baskerville', sans-serif;
+    font-size: 9vh;
+    border-style:groove;
     border-width: 0.02cm;
     background: rgb(255,255,255);
-background: linear-gradient(0deg, rgba(255,255,255,1) 50%, #d6dce0 100%);
+
 }
 
 #forecastheader {
+    font-family: 'Baskerville', sans-serif;
     color: #000000;
     text-align: center;
-    font-size: 5vh;
-    font-weight: bold;
+    font-size: 6vh;
     padding-top: 20px;
+    text-decoration-line: underline;
     
     
 
 }
 
 #forecast {
-
+    font-family: 'Baskerville', sans-serif;
     visibility: hidden;
     text-align: center;
     display: flex;
     justify-content: space-between;
+    font-weight: bold;
 }
 
 #today {
+    font-family: 'Baskerville', sans-serif;
     visibility: hidden;
     text-align: center;
-    font-weight: lighter ;
     font-size:large;
-    font-weight: bold;
+    /* font-weight: bold; */
    background-color:  #17a2b8;
+   
 }
 
 
 footer #footer {
+    font-family: 'Baskerville', sans-serif;
     position: absolute;
     bottom: 0;
     width: 100%;
